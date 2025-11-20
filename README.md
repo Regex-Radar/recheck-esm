@@ -66,6 +66,43 @@ const checkSync = createCheckSync(scalajs);
 const checkSync = createCheckSync(synckit);
 ```
 
+## Environment variables
+
+These environment variables are similar as `recheck`, with some slight variations:
+
+- there is no `auto` option, the defaults are stated below
+- it
+
+### `RECHECK_BACKEND`
+
+```ts
+type RECHECK_BACKEND = 'native' | 'java' | 'thread-worker' | 'web-worker' | 'worker';
+```
+
+When using the default `check` function, it will use the `RECHECK_BACKEND` environment variable to determine which backend to use. It will default to `worker` if not set.
+
+When using a bundler, it is encouraged to use its define/replacement feature to define `process.env['RECHECK_BACKEND']` to a constant string, as it will allow the bundler to remove the backends that are not used.
+
+### `RECHECK_SYNC_BACKEND`
+
+```ts
+type RECHECK_BACKEND_SYNC = 'synckit' | 'pure' | 'scalajs';
+```
+
+When using the default `checkSync` function, it will use the `RECHECK_SYNC_BACKEND` environment variable to determine which backend to use. It will default to `worker` if not set.
+
+When using a bundler, it is encouraged to use its define/replacement feature to define `process.env['RECHECK_SYNC_BACKEND']` to a constant string, as it will allow the bundler to remove the backends that are not used.
+
+### `RECHECK_PLATFORM`
+
+```ts
+type RECHECK_PLATFORM = 'node' | 'browser';
+```
+
+When using the `worker` backend, it will use the `RECHECK_PLATFORM` to determine to use the `web-worker` (browser) or `thread-worker` (node) backend. It will default to try and detect the environment it is running in if not set.
+
+When using a bundler, it is encouraged to use its define/replacement feature to define `process.env['RECHECK_PLATFORM']` to a constant string, as it will allow the bundler to remove the backends that are not used.
+
 ## Worker file paths
 
 TODO: something about the worker files, their paths and passing custom paths.
