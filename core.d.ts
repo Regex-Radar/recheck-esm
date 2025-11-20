@@ -23,8 +23,19 @@ export interface BackendSync {
 }
 
 // builder functions
-declare const createCheck: CheckFn;
-declare const createCheckSync: CheckSyncFn;
+
+export async function createCheck(backend: AgentBackend): Promise<CheckFn>;
+export async function createCheck(
+    backend: WorkerPoolBackend,
+    workerPath?: string,
+    workerPoolSize?: number,
+): Promise<CheckFn>;
+export async function createCheck(
+    backend: Backend,
+    workerPath?: string,
+    workerPoolSize?: number,
+): Promise<CheckFn>;
+export function createCheckSync(backend: BackendSync): CheckSyncFn;
 
 // async backends
 declare const native: AgentBackend;
