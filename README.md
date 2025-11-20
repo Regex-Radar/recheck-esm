@@ -71,7 +71,7 @@ const checkSync = createCheckSync(synckit);
 These environment variables are similar as `recheck`, with some slight variations:
 
 - there is no `auto` option, the defaults are stated below
-- it
+- it allows bundlers to replace `process.env['RECHECK_*']` in the source code with their respective 'define' features, allowing for better results with tree-shaking
 
 ### `RECHECK_BACKEND`
 
