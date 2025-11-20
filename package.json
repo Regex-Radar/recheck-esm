@@ -1,6 +1,6 @@
 {
     "name": "@regex-radar/recheck-esm",
-    "version": "4.5.0-alpha1",
+    "version": "4.5.0-alpha2",
     "description": "The trustworthy ReDoS checker - distributed in ESM format",
     "license": "MIT",
     "publishConfig": {
@@ -18,22 +18,30 @@
     "type": "module",
     "files": [
         "lib",
-        "types.d.ts",
-        "env.d.ts"
+        "core.d.ts",
+        "env.d.ts",
+        "types.d.ts"
     ],
     "scripts": {
         "build": "node -r esbuild-register scripts/build.ts",
         "format": "prettier --write './**/*.{ts,json,md}'",
-        "clean": "rm -r dist/ lib/"
+        "clean": "rm -r dist/ lib/",
+        "typecheck": "tsc --noEmit -p ."
     },
     "exports": {
-        ".": "./lib/index.js",
-        "./browser": "./lib/browser.js",
+        ".": {
+            "types": "./types.d.ts",
+            "import": "./lib/index.js"
+        },
+        "./browser": {
+            "types": "./types.d.ts",
+            "import": "./lib/browser.js"
+        },
         "./core": "./lib/core/index.js",
         "./*.worker.js": "./lib/*.worker.js"
     },
     "optionalDependencies": {
-        "@regex-radar/recheck-scalajs": "^4.5.0-alpha1",
+        "@regex-radar/recheck-scalajs": "^4.5.0-alpha2",
         "recheck-jar": "^4.5.0",
         "recheck-linux-arm64": "^4.5.0",
         "recheck-linux-x64": "^4.5.0",

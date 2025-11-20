@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import { Agent } from './agent.js';
-import type { AgentBackend } from '../builder.js';
+import type { AgentBackend } from '../../../core.js';
 
 let agent: Agent | null = null;
 

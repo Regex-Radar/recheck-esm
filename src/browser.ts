@@ -1,4 +1,4 @@
-import type { CheckFn, CheckSyncFn } from './core/builder.js';
+import type { CheckFn, CheckSyncFn } from '../core.js';
 import { webWorker, scalajs, createCheck, createCheckSync } from './core/index.js';
 
 let checkFn: CheckFn | undefined;

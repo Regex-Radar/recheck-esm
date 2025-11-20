@@ -1,6 +1,6 @@
 import type { WorkerMessagePort } from './port.js';
-import type { CheckSyncFn } from '../../builder.js';
 import type { Diagnostics, Parameters } from '../../../../types.js';
+import type { CheckSyncFn } from '../../../../core.js';
 
 type Logger = (message: string) => void;
 

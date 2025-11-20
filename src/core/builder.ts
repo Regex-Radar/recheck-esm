@@ -1,23 +1,13 @@
-import type { Diagnostics, HasAbortSignal, Parameters } from '../../types.js';
-import { check, type Agent } from './backend/agent.js';
-import type { WorkerPool } from './backend/worker-pool.js';
+import type {
+    AgentBackend,
+    Backend,
+    BackendSync,
+    CheckFn,
+    CheckSyncFn,
+    WorkerPoolBackend,
+} from '../../core.js';
+import { check } from './backend/agent.js';
 
-export type CheckFn = (
-    source: string,
-    flags: string,
-    params?: Parameters & HasAbortSignal,
-) => Promise<Diagnostics>;
-export type CheckSyncFn = (source: string, flags: string, params?: Parameters) => Diagnostics;
-
-export type Backend = AgentBackend | WorkerPoolBackend;
-
-export interface AgentBackend {
-    createAgent(): Promise<Agent>;
-}
-
-export interface WorkerPoolBackend {
-    createWorkerPool(workerPath?: string, workerPoolSize?: number): WorkerPool;
-}
 export async function createCheck(backend: AgentBackend): Promise<CheckFn>;
 export async function createCheck(
     backend: WorkerPoolBackend,
@@ -41,10 +31,6 @@ export async function createCheck(
         const pool = backend.createWorkerPool(workerPath, workerPoolSize);
         return (...args) => pool.check(...args);
     }
-}
-
-export interface BackendSync {
-    createCheckSync(): CheckSyncFn;
 }
 
 export function createCheckSync(backend: BackendSync): CheckSyncFn {

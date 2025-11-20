@@ -1,7 +1,7 @@
 import { createWorkerPool as createWebWorkerPool } from '../web-worker/index.js';
 import { createWorkerPool as createThreadWorkerPool } from '../thread-worker/index.js';
-import type { WorkerPoolBackend } from '../../builder.js';
 import type { WorkerPool } from '../worker-pool.js';
+import type { WorkerPoolBackend } from '../../../../core.js';
 
 export const createWorkerPool: WorkerPoolBackend['createWorkerPool'] = (workerPath?: string): WorkerPool => {
     switch (process.env['RECHECK_PLATFORM'] ?? detectPlatform()) {

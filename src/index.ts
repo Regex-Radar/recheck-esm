@@ -9,7 +9,7 @@ import {
     webWorker,
     worker,
 } from './core/index.js';
-import type { Backend, BackendSync, CheckFn, CheckSyncFn } from './core/builder.js';
+import type { Backend, BackendSync, CheckFn, CheckSyncFn } from '../core.js';
 
 let checkFn: CheckFn | undefined;
 export const check: CheckFn = async (...args) => {

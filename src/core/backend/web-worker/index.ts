@@ -1,4 +1,4 @@
-import type { WorkerPoolBackend } from '../../builder.js';
+import type { WorkerPoolBackend } from '../../../../core.js';
 import { WorkerPool } from '../worker-pool.js';
 import { createWebWorker } from './create-worker.js';
 
