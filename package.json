@@ -7,9 +7,10 @@
         "name": "Kevin Ramharak",
         "url": "https://github.com/kevinramharak"
     },
+    "homepage": "https://github.com/regex-radar/recheck-esm",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Regex-Radar/recheck-esm.git"
+        "url": "git+https://github.com/Regex-Radar/recheck-esm.git"
     },
     "type": "module",
     "files": [
