@@ -62,7 +62,7 @@ import { createCheckSync, scalajs, synckit } from 'recheck-esm';
 // With the scalajs backend
 const checkSync = createCheckSync(scalajs);
 
-// With he synckit worker backend
+// With the synckit worker backend
 const checkSync = createCheckSync(synckit);
 ```
 
