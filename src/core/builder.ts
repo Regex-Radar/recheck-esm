@@ -6,30 +6,43 @@ import type {
     CheckSyncFn,
     WorkerPoolBackend,
 } from '../../core.js';
-import { check } from './backend/agent.js';
+import { check, type Agent } from './backend/agent.js';
+import type { WorkerPool } from './backend/worker-pool.js';
+
+const dispose: typeof Symbol.dispose = Symbol.dispose ?? Symbol.for('dispose');
 
 export async function createCheck(backend: AgentBackend): Promise<CheckFn>;
 export async function createCheck(
     backend: WorkerPoolBackend,
-    workerPath?: string,
-    workerPoolSize?: number,
+    options?: {
+        workerPath?: string;
+        workerPoolSize?: number;
+    },
 ): Promise<CheckFn>;
 export async function createCheck(
     backend: Backend,
-    workerPath?: string,
-    workerPoolSize?: number,
+    options?: {
+        workerPath?: string;
+        workerPoolSize?: number;
+    },
 ): Promise<CheckFn>;
 export async function createCheck(
     backend: Backend,
-    workerPath?: string,
-    workerPoolSize?: number,
+    options: {
+        workerPath?: string;
+        workerPoolSize?: number;
+    } = {},
 ): Promise<CheckFn> {
     if ('createAgent' in backend) {
-        const agent = await backend.createAgent();
-        return (...args) => check(agent, ...args);
+        const agent = (await backend.createAgent()) as Agent;
+        const fn: CheckFn & Disposable = (...args) => check(agent, ...args);
+        fn[dispose] = () => agent.kill();
+        return fn;
     } else {
-        const pool = backend.createWorkerPool(workerPath, workerPoolSize);
-        return (...args) => pool.check(...args);
+        const pool = backend.createWorkerPool(options.workerPath, options.workerPoolSize) as WorkerPool;
+        const fn: CheckFn & Disposable = (...args) => pool.check(...args);
+        fn[dispose] = () => pool.kill();
+        return fn;
     }
 }
 

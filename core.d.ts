@@ -27,13 +27,17 @@ export interface BackendSync {
 export async function createCheck(backend: AgentBackend): Promise<CheckFn>;
 export async function createCheck(
     backend: WorkerPoolBackend,
-    workerPath?: string,
-    workerPoolSize?: number,
+    options?: {
+        workerPath?: string;
+        workerPoolSize?: number;
+    },
 ): Promise<CheckFn>;
 export async function createCheck(
     backend: Backend,
-    workerPath?: string,
-    workerPoolSize?: number,
+    options?: {
+        workerPath?: string;
+        workerPoolSize?: number;
+    },
 ): Promise<CheckFn>;
 export function createCheckSync(backend: BackendSync): CheckSyncFn;
 

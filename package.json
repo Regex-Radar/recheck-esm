@@ -1,6 +1,6 @@
 {
     "name": "@regex-radar/recheck-esm",
-    "version": "4.5.1",
+    "version": "4.5.3",
     "description": "The trustworthy ReDoS checker - distributed in ESM format",
     "license": "MIT",
     "publishConfig": {
@@ -24,6 +24,7 @@
     ],
     "scripts": {
         "build": "node -r esbuild-register scripts/build.ts",
+        "prepack": "npm run build",
         "format": "prettier --write './**/*.{ts,json,md}'",
         "clean": "rm -r dist/ lib/",
         "typecheck": "tsc --noEmit -p ."
