@@ -1,6 +1,6 @@
 {
     "name": "@regex-radar/recheck-esm",
-    "version": "4.5.0",
+    "version": "4.5.1",
     "description": "The trustworthy ReDoS checker - distributed in ESM format",
     "license": "MIT",
     "publishConfig": {
@@ -41,7 +41,9 @@
             "types": "./core.d.ts",
             "import": "./lib/core/index.js"
         },
-        "./*.worker.js": "./lib/*.worker.js"
+        "./*.worker.js": {
+            "import": "./lib/*.worker.js"
+        }
     },
     "optionalDependencies": {
         "@regex-radar/recheck-scalajs": "^4.5.0",

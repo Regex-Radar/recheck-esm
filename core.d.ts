@@ -38,14 +38,12 @@ export async function createCheck(
 export function createCheckSync(backend: BackendSync): CheckSyncFn;
 
 // async backends
-declare const native: AgentBackend;
-declare const java: AgentBackend;
-declare const worker: WorkerPoolBackend;
-declare const threadWorker: WorkerPoolBackend;
-declare const webWorker: WorkerPoolBackend;
+export const native: AgentBackend;
+export const java: AgentBackend;
+export const worker: WorkerPoolBackend;
+export const threadWorker: WorkerPoolBackend;
+export const webWorker: WorkerPoolBackend;
 
 // sync backends
-declare const scalajs: BackendSync;
-declare const synckit: BackendSync;
-
-export { createCheck, createCheckSync, native, worker, threadWorker, webWorker, scalajs, synckit };
+export const scalajs: BackendSync;
+export const synckit: BackendSync;

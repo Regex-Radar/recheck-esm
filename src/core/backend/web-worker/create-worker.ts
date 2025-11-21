@@ -10,7 +10,7 @@ import webWorkerSourceCode from './web.worker.ts?esbuild';
 // it is important that the `createWorker` functions allow for the caller to override these values,
 // as the path's might vary based on the compiletime and runtime environments
 // TODO: figure out the best value for this path
-const defaultwebWorkerPath = import.meta.resolve('./web.worker.js');
+const defaultwebWorkerPath = import.meta.resolve('@regex-radar/recheck-esm/web.worker.js');
 
 export function createInlineWebWorker(): WorkerInterface {
     const blob = new Blob([webWorkerSourceCode], { type: 'text/javascript' });

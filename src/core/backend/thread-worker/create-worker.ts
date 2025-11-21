@@ -11,7 +11,7 @@ import threadWorkerSourceCode from './thread.worker.ts?esbuild';
 // it is important that the `createWorker` functions allow for the caller to override these values,
 // as the path's might vary based on the compiletime and runtime environments
 // TODO: figure out the best value for this path
-const defaultThreadWorkerPath = import.meta.resolve('./thread.worker.js');
+const defaultThreadWorkerPath = import.meta.resolve('@regex-radar/recheck-esm/thread.worker.js');
 
 function createWorkerInterface(thread: WorkerThread): WorkerInterface {
     return {
