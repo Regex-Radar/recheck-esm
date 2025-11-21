@@ -1,6 +1,6 @@
 {
     "name": "@regex-radar/recheck-esm",
-    "version": "4.5.3",
+    "version": "4.5.4",
     "description": "The trustworthy ReDoS checker - distributed in ESM format",
     "license": "MIT",
     "publishConfig": {
@@ -47,6 +47,7 @@
         }
     },
     "optionalDependencies": {
+        "@regex-radar/recheck-scalajs-wasm": "^4.5.0-alpha.1",
         "@regex-radar/recheck-scalajs": "^4.5.0",
         "recheck-jar": "^4.5.0",
         "recheck-linux-arm64": "^4.5.0",

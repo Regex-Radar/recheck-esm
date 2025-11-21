@@ -105,7 +105,11 @@ When using a bundler, it is encouraged to use its define/replacement feature to 
 
 ## Worker file paths
 
-TODO: something about the worker files, their paths and passing custom paths.
+TODO: something about the worker files, their paths and passing custom paths. Also mention [`recheck-scalajs`](https://github.com/Regex-Radar/recheck-scalajs).
+
+### Wasm workers
+
+TODO: something about the experimental WASM workers at [`recheck-scalajs-wasm`](https://github.com/Regex-Radar/recheck-scalajs-wasm).
 
 ## Worker Pool
 

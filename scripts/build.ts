@@ -97,16 +97,19 @@ const main = async () => {
             outfile: 'lib/thread.worker.js',
         },
         {
+            entryPoints: ['src/core/backend/thread-worker/thread.wasm.worker.ts'],
+            platform: 'node',
+            outfile: 'lib/thread.wasm.worker.js',
+        },
+        {
             entryPoints: ['src/core/backend/web-worker/web.worker.ts'],
             platform: 'browser',
             outfile: 'lib/web.worker.js',
         },
         {
-            entryPoints: ['src/core/backend/web-worker/web.worker.ts'],
+            entryPoints: ['src/core/backend/web-worker/web.wasm.worker.ts'],
             platform: 'browser',
-            bundle: true,
-            external: [],
-            outfile: 'lib/web.worker.bundle.js',
+            outfile: 'lib/web.wasm.worker.js',
         },
         {
             entryPoints: ['src/core/backend/synckit/synckit.worker.ts'],
