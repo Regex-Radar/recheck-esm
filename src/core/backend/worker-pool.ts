@@ -22,7 +22,9 @@ export class WorkerPool {
     constructor(
         private readonly createWorker: () => WorkerInterface,
         private readonly maxWorkerSize = 1,
-    ) {}
+    ) {
+        this.setupWorker(this.createWorker());
+    }
 
     check(source: string, flags: string, params: Parameters & HasAbortSignal = {}): Promise<Diagnostics> {
         const id = this.nextID++;
