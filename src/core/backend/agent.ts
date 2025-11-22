@@ -159,34 +159,29 @@ export class Agent {
             this.child.unref();
         }
     }
-}
 
-export function check(
-    agent: Agent,
-    source: string,
-    flags: string,
-    params: Parameters & HasAbortSignal = {},
-): Promise<Diagnostics> {
-    const copy: typeof params = { ...params };
+    check(source: string, flags: string, params: Parameters & HasAbortSignal = {}): Promise<Diagnostics> {
+        const copy: typeof params = { ...params };
 
-    // remove signal from the params, as its not serializable
-    const signal = copy.signal;
-    if (signal) {
-        delete copy.signal;
+        // remove signal from the params, as its not serializable
+        const signal = copy.signal;
+        if (signal) {
+            delete copy.signal;
+        }
+
+        // remove logger from the params, as its not serializable
+        // keep an empty object to signal to the backend it should send logs
+        const logger = copy.logger;
+        if (logger) {
+            copy.logger = {} as SubscribeFn;
+        }
+
+        const { id, promise } = this.request('check', { source, flags, params: copy }, logger);
+
+        signal?.addEventListener('abort', () => {
+            this.notify('cancel', { id });
+        });
+
+        return promise;
     }
-
-    // remove logger from the params, as its not serializable
-    // keep an empty object to signal to the backend it should send logs
-    const logger = copy.logger;
-    if (logger) {
-        copy.logger = {} as SubscribeFn;
-    }
-
-    const { id, promise } = agent.request('check', { source, flags, params: copy }, logger);
-
-    signal?.addEventListener('abort', () => {
-        agent.notify('cancel', { id });
-    });
-
-    return promise;
 }

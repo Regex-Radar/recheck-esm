@@ -1,6 +1,6 @@
 {
     "name": "@regex-radar/recheck-esm",
-    "version": "4.5.4",
+    "version": "4.5.5",
     "description": "The trustworthy ReDoS checker - distributed in ESM format",
     "license": "MIT",
     "publishConfig": {
@@ -15,6 +15,7 @@
         "type": "git",
         "url": "git+https://github.com/regex-radar/recheck-esm.git"
     },
+    "sideEffects": false,
     "type": "module",
     "files": [
         "lib",

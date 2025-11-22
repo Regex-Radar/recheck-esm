@@ -6,7 +6,7 @@ import type {
     CheckSyncFn,
     WorkerPoolBackend,
 } from '../../core.js';
-import { check, type Agent } from './backend/agent.js';
+import type { Agent } from './backend/agent.js';
 import type { WorkerPool } from './backend/worker-pool.js';
 
 const dispose: typeof Symbol.dispose = Symbol.dispose ?? Symbol.for('dispose');
@@ -26,7 +26,7 @@ export async function createCheck(
         workerPoolSize?: number;
     },
 ): Promise<CheckFn>;
-export async function createCheck(
+export async function /* @__PURE__ */ createCheck(
     backend: Backend,
     options: {
         workerPath?: string;
@@ -35,7 +35,7 @@ export async function createCheck(
 ): Promise<CheckFn> {
     if ('createAgent' in backend) {
         const agent = (await backend.createAgent()) as Agent;
-        const fn: CheckFn & Disposable = (...args) => check(agent, ...args);
+        const fn: CheckFn & Disposable = (...args) => agent.check(...args);
         fn[dispose] = () => agent.kill();
         return fn;
     } else {

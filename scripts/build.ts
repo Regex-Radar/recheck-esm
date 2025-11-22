@@ -72,7 +72,6 @@ async function build(options: SimpleBuildOptions) {
         format: 'esm',
         treeShaking: true,
         minifySyntax: true,
-        sourcemap: false && !isProduction,
         logLevel: 'error',
         packages: 'external',
         ...options,
@@ -121,7 +120,8 @@ const main = async () => {
         await build(options);
     }
     await build({
-        entryPoints: ['src/core/index.ts'],
+        entryPoints: ['src/core/**/*.ts'],
+        bundle: false,
         platform: 'node',
         outbase: 'src',
         outdir: 'lib',
